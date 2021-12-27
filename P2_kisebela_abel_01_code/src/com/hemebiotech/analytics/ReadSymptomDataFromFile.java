@@ -28,6 +28,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		this.filepath = filepath;
 	}
 	
+	@Override
 	public List<String> getSymptoms() {
 		List<String> result = new ArrayList<>();
 		
@@ -49,6 +50,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		return result;
 	}
 	
+	@Override
 	public void checkSymtoms(List<String> listSymptom) {
 		try {
 			for (String symptom : listSymptom) {
