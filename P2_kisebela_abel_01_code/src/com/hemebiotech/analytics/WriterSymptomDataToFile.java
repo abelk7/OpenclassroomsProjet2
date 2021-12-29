@@ -14,6 +14,12 @@ public class WriterSymptomDataToFile implements ISymptomWriter{
 		this.filepath = filepath;
 	}
 	
+	
+	/*
+	 * Loop a map, for each key and is value  write it in the file
+	 * given in the constructor 
+	 *
+	 */
 	@Override
 	public void writeSymptoms(Map<String, Integer> mapSymptoms) {
 		try (FileWriter writer = new FileWriter (filepath)){

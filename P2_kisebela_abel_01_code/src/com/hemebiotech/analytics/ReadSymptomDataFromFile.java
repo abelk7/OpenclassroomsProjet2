@@ -28,6 +28,11 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		this.filepath = filepath;
 	}
 	
+	/*
+	 * 
+	 * Try to Read the file sent in the constructor, 
+	 * and add all symptoms in a list who will be returned
+	 */
 	@Override
 	public List<String> getSymptoms() {
 		List<String> result = new ArrayList<>();
@@ -50,6 +55,12 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		return result;
 	}
 	
+	
+	/*
+	 * check the list of symptoms sent in parameter, 
+	 * in a loop, for each symptoms , check  the occurrences in the list 
+	 * and add it in a map (name symptoms + number of occurrence)
+	 */
 	@Override
 	public void checkSymtoms(List<String> listSymptom) {
 		try {
@@ -68,13 +79,10 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		
 	}
 	
+	//return the map of symptoms with they occurrences
 	public Map<String, Integer> getMapSymptoms() {
 		return mapSymptoms;
 	}
 	
-	public void setMapSymptoms(Map<String, Integer> mapSyptoms) {
-		this.mapSymptoms = mapSyptoms;
-		
-	}
 
 }

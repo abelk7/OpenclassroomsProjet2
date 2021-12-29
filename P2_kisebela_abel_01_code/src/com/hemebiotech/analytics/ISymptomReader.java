@@ -1,6 +1,7 @@
 package com.hemebiotech.analytics;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Anything that will read symptom data from a source
@@ -22,4 +23,6 @@ public interface ISymptomReader {
 	 * @param listSymptom
 	 */
 	void checkSymtoms(List<String> listSymptom);
+	
+	public Map<String, Integer> getMapSymptoms();
 }
