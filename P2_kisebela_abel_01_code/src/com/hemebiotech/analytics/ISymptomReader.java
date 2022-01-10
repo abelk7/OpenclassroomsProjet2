@@ -24,5 +24,9 @@ public interface ISymptomReader {
 	 */
 	void checkSymtoms(List<String> listSymptom);
 	
+	/**
+	 * 
+	 * @return a Map list of symptoms and occurences
+	 */
 	public Map<String, Integer> getMapSymptoms();
 }

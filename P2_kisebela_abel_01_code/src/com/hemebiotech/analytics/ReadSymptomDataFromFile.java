@@ -19,7 +19,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	private String filepath;
 	private Map<String, Integer> mapSymptoms = new TreeMap<>();
 	private static final Logger LOGGER = Logger.getLogger(ReadSymptomDataFromFile.class);
-	
+
 	/**
 	 * 
 	 * @param filepath a full or partial path to file with symptom strings in it, one per line
@@ -27,7 +27,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	public ReadSymptomDataFromFile (String filepath) {
 		this.filepath = filepath;
 	}
-	
+
 	/*
 	 * 
 	 * Try to Read the file sent in the constructor, 
@@ -36,26 +36,24 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	@Override
 	public List<String> getSymptoms() {
 		List<String> result = new ArrayList<>();
-		
-		if (filepath != null) {
-			try (BufferedReader reader = new BufferedReader (new FileReader(filepath))){
-				
-				String line = reader.readLine();
-				
-				while (line  != null) {
-					result.add(line);
-					line = reader.readLine();
-				}
-			} catch (IOException e) {
-				LOGGER.error("Erreur lors de la lecture du fichier..." + e.getMessage());
-				
+
+		try (BufferedReader reader = new BufferedReader (new FileReader(filepath))){
+
+			String line = reader.readLine();
+
+			while (line  != null) {
+				result.add(line);
+				line = reader.readLine();
 			}
+		} catch (IOException e) {
+			LOGGER.error("Erreur lors de la lecture du fichier..." + e.getMessage());
+
 		}
-		
+
 		return result;
 	}
-	
-	
+
+
 	/*
 	 * check the list of symptoms sent in parameter, 
 	 * in a loop, for each symptoms , check  the occurrences in the list 
@@ -65,24 +63,22 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	public void checkSymtoms(List<String> listSymptom) {
 		try {
 			for (String symptom : listSymptom) {
-				
-					if(mapSymptoms.containsKey(symptom)) {
-						mapSymptoms.replace(symptom, mapSymptoms.get(symptom) +1);
-					}else {
-						mapSymptoms.put(symptom, 1);
-					}
+
+				if(mapSymptoms.containsKey(symptom)) {
+					mapSymptoms.replace(symptom, mapSymptoms.get(symptom) +1);
+				}else {
+					mapSymptoms.put(symptom, 1);
+				}
 			}
-				
+
 		} catch (Exception e) {
 			LOGGER.error("Une erreur est survenue lors du check des symptomes."+ e.getMessage());
 		}
-		
+
 	}
-	
+
 	//return the map of symptoms with they occurrences
 	public Map<String, Integer> getMapSymptoms() {
 		return mapSymptoms;
 	}
-	
-
 }

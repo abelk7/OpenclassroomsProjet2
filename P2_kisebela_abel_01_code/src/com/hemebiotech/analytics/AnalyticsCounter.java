@@ -6,7 +6,9 @@ import java.io.FileWriter;
 import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.PropertyConfigurator;
+
+//import org.apache.log4j.BasicConfigurator;
+//import org.apache.log4j.PropertyConfigurator;
 
 /**
  * @author abel
@@ -26,26 +28,16 @@ public class AnalyticsCounter {
 	/**
 	 * Check all symptoms who will be tracked
 	 */
-	private void checkSymptoms() {
+	protected void checkSymptoms() {
 		reader.checkSymtoms(getSymtomsList()); // If no data is available, return an empty List
 	}
 	
 	/**
 	 * Write the result with symptoms and they occurrences 
 	 */
-	private void writeOutput() {
+	protected void writeOutput() {
 		writer.writeSymptoms(reader.getMapSymptoms());
 	}
 	
-	//Entry point
-	public static void main(String args[]) throws Exception {
-		
-		//configure the logger
-		BasicConfigurator.configure();
-		
-		AnalyticsCounter analyse = new AnalyticsCounter();
-		analyse.checkSymptoms();
-		analyse.writeOutput();
 
-	}
 }
